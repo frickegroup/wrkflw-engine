@@ -1,0 +1,42 @@
+name: release
+on:
+  push:
+    branches:
+      - main
+env:
+  CI: true
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3.0.2
+        with:
+          fetch-depth: 0
+      - name: setup pnpm
+        uses: pnpm/action-setup@v2.2.2
+      - name: setup node.js
+        uses: actions/setup-node@v3.4.1
+        with:
+          node-version-file: '.node-version'
+          cache: 'pnpm'
+      - name: setup npmrc
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
+      - name: install dependencies
+        run: pnpm install
+      - name: create and publish versions
+        uses: changesets/action@v1
+        with:
+          setupGitUser: true
+          version: "changeset version"
+          title: "chore: :rocket: release"
+          commit: "chore: :rocket: release"
+          createGithubReleases: true
+          # script called release which does a build for your packages and calls changeset publish
+          # publish: "pnpm release"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
