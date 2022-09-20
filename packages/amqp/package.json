@@ -1,0 +1,34 @@
+{
+  "name": "@frickegroup/wrkflw-amqp",
+  "version": "0.0.0",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsm build.ts",
+    "dts": "tsc  --project tsconfig.dts.json",
+    "prepublish": "pnpm build && pnpm dts"
+  },
+  "dependencies": {
+    "@cloudamqp/amqp-client": "2.1.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.15.8",
+    "tsx": "3.9.0",
+    "tsm": "2.2.2"
+  },
+  "packageManager": "pnpm@7.12.0",
+  "engines": {
+    "node": "16.17.0",
+    "pnpm": "7.12.0"
+  },
+  "access": "public"
+}

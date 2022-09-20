@@ -1,0 +1,9 @@
+{
+  "name": "@frickegroup/wrkflw-deepl",
+  "version": "0.0.0",
+  "type": "module",
+  "dependencies": {
+    "deepl-node": "1.6.0"
+  },
+  "access": "public"
+}

@@ -21,6 +21,11 @@
     "editor.tabSize": 2,
     "editor.autoIndent": "advanced"
   },
+  "[json]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced"
+  },
   "eslint.validate": [
     "javascript",
     "typescript",
@@ -33,4 +38,5 @@
 
   "vscode-graphql.cacheSchemaFileForLookup": false,
   "xstate.nestTypegenFiles": false,
+  "explorer.fileNesting.enabled": false
 }
