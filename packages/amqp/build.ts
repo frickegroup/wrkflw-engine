@@ -1,22 +1,17 @@
 import { buildSync } from 'esbuild'
 import { builtinModules } from 'node:module'
+import * as pkg from './package.json'
 
-const dependencies = Object.keys(process.env)
-	.filter(k => k.startsWith('npm_package_dependencies'))
-	.map(k => k.split('__')[1])
-
-const peerDependencies = Object.keys(process.env)
-	.filter(k => k.startsWith('npm_package_peerDependencies'))
-	.map(k => k.split('__')[1])
-
-const node = `node${process.env.npm_package_engines_node ?? ''}`
+const dependencies = Object.keys(pkg.dependencies)
+const peerDependencies = Object.keys(pkg.peerDependencies)
+const node = `node${pkg.engines.node}`
 
 buildSync({
 	entryPoints: ['src/index.ts'],
 	outfile: 'dist/index.js',
 	minify: true,
 	platform: 'node',
-	sourcemap: 'inline',
+	// sourcemap: 'inline',
 	target: node,
 	bundle: true,
 	format: 'esm',
