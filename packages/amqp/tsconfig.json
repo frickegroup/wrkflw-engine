@@ -19,7 +19,8 @@
     "noImplicitAny": true,
     "useUnknownInCatchVariables": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "isolatedModules": true
   },
   "include": [
     "src/*.ts",
