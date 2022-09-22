@@ -9,9 +9,13 @@ interface AMPQ_MESSAGE<T> {
 export default class Node {
 	#client: AMQPClient
 
-	constructor() {
+	/**
+	 *
+	 * @param url connection url as string
+	 */
+	constructor(url: string) {
 		//TODO@alexanderniebuhr add connection url param
-		this.#client = new AMQPClient('')
+		this.#client = new AMQPClient(url)
 	}
 
 	async connect() {
