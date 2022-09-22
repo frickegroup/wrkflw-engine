@@ -1,5 +1,11 @@
 # @frickegroup/wrkflw-amqp
 
+## 0.1.2
+
+### Patch Changes
+
+- [`82f0387`](https://github.com/frickegroup/wrkflw-engine/commit/82f0387ad36bdb8e5a07bf3dfdccfbc407acc510) Thanks [@alexanderniebuhr](https://github.com/alexanderniebuhr)! - `fix` constructor missing connection url parameter
+
 ## 0.1.1
 
 ### Patch Changes
