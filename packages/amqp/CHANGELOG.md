@@ -1,5 +1,11 @@
 # @frickegroup/wrkflw-amqp
 
+## 0.1.4
+
+### Patch Changes
+
+- [`075d1ac`](https://github.com/frickegroup/wrkflw-engine/commit/075d1ac18a68ca3633bb4deb99fa26c211a97857) Thanks [@alexanderniebuhr](https://github.com/alexanderniebuhr)! - `fix` amqp closed on empty channel
+
 ## 0.1.3
 
 ### Patch Changes
