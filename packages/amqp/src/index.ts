@@ -30,7 +30,7 @@ export default class Node {
 		const AMQP_CHANNEL = await this.#client.channel()
 		await AMQP_CHANNEL.basicQos(1, undefined, true)
 
-		await AMQP_CHANNEL.basicConsume(opts.queue, {noAck: false, tag: opts.queue}, (msg) => {
+		const AMQP_CONSUMER = await AMQP_CHANNEL.basicConsume(opts.queue, {noAck: false, tag: opts.queue}, (msg) => {
 			const message_id = msg.properties.messageId
 			const message_timestamp = msg.properties.timestamp
 			const message_content = JSON.parse(msg.bodyToString() ?? '{}') as T
@@ -40,9 +40,11 @@ export default class Node {
 				message_content,
 				message_timestamp,
 			}
+
+			void AMQP_CHANNEL.basicCancel(opts.queue)
 		})
 
-		await AMQP_CHANNEL.basicCancel(opts.queue)
+		await AMQP_CONSUMER.wait()
 		await AMQP_CHANNEL.basicAck(1, false)
 
 		await AMQP_CHANNEL.close()
