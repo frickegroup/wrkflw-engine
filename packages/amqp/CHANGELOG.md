@@ -1,5 +1,11 @@
 # @frickegroup/wrkflw-amqp
 
+## 0.1.3
+
+### Patch Changes
+
+- [`8962c3b`](https://github.com/frickegroup/wrkflw-engine/commit/8962c3b3ed2e5220aed6207e4bfdafe8f7dd0554) Thanks [@alexanderniebuhr](https://github.com/alexanderniebuhr)! - `fix` gracefully close consumer after one message received
+
 ## 0.1.2
 
 ### Patch Changes
