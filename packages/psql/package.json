@@ -27,7 +27,7 @@
   "peerDependencies": {},
   "packageManager": "pnpm@7.12.2",
   "engines": {
-    "node": "16.17.0",
+    "node": "16.17.1",
     "pnpm": "7.12.2"
   },
   "access": "public"
