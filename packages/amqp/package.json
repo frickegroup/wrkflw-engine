@@ -22,7 +22,6 @@
   },
   "devDependencies": {
     "esbuild": "0.15.8",
-    "tsx": "3.9.0",
     "tsm": "2.2.2"
   },
   "peerDependencies": {},

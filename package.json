@@ -10,8 +10,8 @@
   "scripts": {
     "changeset": "changeset",
     "prepublish": "pnpm -r prepublish",
-    "release": "changeset publish",
-    "prerelease": "changeset version"
+    "prerelease": "changeset version",
+    "release": "changeset publish"
   },
   "devDependencies": {
     "@changesets/changelog-github": "0.4.6",
