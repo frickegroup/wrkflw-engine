@@ -61,16 +61,31 @@ export default class Node {
 	async out(opts: {
 		routing_key: string;
 	}, data: {
-		message_id?: string;
+		message_id: string;
 		content: object;
-	}): Promise<string> {
-		const message_id = data.message_id ?? ''
-
+	} | {
+		message_id: string;
+		content: object;
+	}[]): Promise<string | string[]> {
+		// check if data is array
+		const is_array = Array.isArray(data)
 		const AMQP_CHANNEL = await this.#client.channel()
-		await AMQP_CHANNEL.basicPublish('amq.direct', opts.routing_key, JSON.stringify(data.content), { messageId: message_id, timestamp: new Date(), deliveryMode: 2, contentType: 'application/json' })
+		if (!is_array) {
+			const message_id = data.message_id
+			await AMQP_CHANNEL.basicPublish('amq.direct', opts.routing_key, JSON.stringify(data.content), { messageId: message_id, timestamp: new Date(), deliveryMode: 2, contentType: 'application/json' })
+			await AMQP_CHANNEL.close()
 
-		await AMQP_CHANNEL.close()
+			return message_id
+		} else {
+			const promises = []
+			for (const [i, v] of data.entries()) {
+				const message_id = `${v.message_id}_${i}`
+				promises.push(AMQP_CHANNEL.basicPublish('amq.direct', opts.routing_key, JSON.stringify(v.content), { messageId: message_id, timestamp: new Date(), deliveryMode: 2, contentType: 'application/json' }).then(() => {return message_id}))
+			}
+			const message_ids = await Promise.all<string>(promises)
+			await AMQP_CHANNEL.close()
 
-		return message_id
+			return message_ids
+		}
 	}
 }
