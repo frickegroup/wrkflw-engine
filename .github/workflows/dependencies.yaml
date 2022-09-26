@@ -4,9 +4,9 @@ jobs:
   changeset:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
         with:
           fetch-depth: 0
-      - uses: "the-guild-org/changesets-dependencies-action@v1.1.0"
+      - uses: "the-guild-org/changesets-dependencies-action@9d1effd4882f5af2cd3f10dea7f131a4e9fbeb71" # tag=v1.1.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
