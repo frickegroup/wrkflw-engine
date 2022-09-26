@@ -1,5 +1,11 @@
 # @frickegroup/wrkflw-amqp
 
+## 0.1.6
+
+### Patch Changes
+
+- [`0104ddb`](https://github.com/frickegroup/wrkflw-engine/commit/0104ddbb9e56751bd7630d816d12b6e1241d4e9e) Thanks [@alexanderniebuhr](https://github.com/alexanderniebuhr)! - `amqp.out()` allows to publish array of messages now
+
 ## 0.1.5
 
 ### Patch Changes
