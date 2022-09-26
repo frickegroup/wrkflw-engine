@@ -1,5 +1,11 @@
 # @frickegroup/wrkflw-amqp
 
+## 0.1.5
+
+### Patch Changes
+
+- [`f66f0a6`](https://github.com/frickegroup/wrkflw-engine/commit/f66f0a65667e082767e016777b7ba7612e974bcd) Thanks [@alexanderniebuhr](https://github.com/alexanderniebuhr)! - amqp node `out()`
+
 ## 0.1.4
 
 ### Patch Changes
