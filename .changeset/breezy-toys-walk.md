@@ -2,4 +2,4 @@
 "@frickegroup/wrkflw-deepl": patch
 ---
 
-`fix` return empty string instead of error if value is `''`
+`fix` return an empty string instead of an error if the value is `''`

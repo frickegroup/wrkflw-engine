@@ -1,9 +1,10 @@
 import { AMQPClient } from '@cloudamqp/amqp-client'
 
-interface AMPQ_MESSAGE<T> {
+interface MESSAGE<T> {
+	delivery_tag?: number;
 	message_id: string;
-	message_content: T;
 	message_timestamp: Date;
+	message_content: T;
 }
 
 export default class Node {
@@ -14,7 +15,6 @@ export default class Node {
 	 * @param url connection url as string
 	 */
 	constructor(url: string) {
-		//TODO@alexanderniebuhr add connection url param
 		this.#client = new AMQPClient(url)
 	}
 
@@ -22,9 +22,58 @@ export default class Node {
 		await this.#client.connect()
 	}
 
+	async close() {
+		await this.#client.close()
+	}
+
+	async ack(opts: {
+		channel: number;
+		delivery_tag: number;
+	}) {
+		const AMQP_CHANNEL = await this.#client.channel(opts.channel)
+		await AMQP_CHANNEL.basicAck(opts.delivery_tag, false)
+	}
+
+	async reject(opts: {
+		channel: number;
+		delivery_tag: number;
+	}) {
+		const AMQP_CHANNEL = await this.#client.channel(opts.channel)
+		await AMQP_CHANNEL.basicNack(opts.delivery_tag, true, false)
+	}
+
+	async listen<T extends object | string>(opts: {
+		channel: number;
+		queue: string;
+		parallel: number;
+	}, callback: (msg: MESSAGE<T | string>) => Promise<void>) {
+		const AMQP_CHANNEL = await this.#client.channel(opts.channel)
+		await AMQP_CHANNEL.basicQos(opts.parallel, undefined, true)
+
+		const AMQP_CONSUMER = await AMQP_CHANNEL.basicConsume(opts.queue, { noAck: false, tag: opts.queue }, (msg) => {
+			const message_id = msg.properties.messageId
+			const delivery_tag = msg.deliveryTag
+			const message_timestamp = msg.properties.timestamp
+			const message_content = (msg.properties.contentType == 'application/json') ? JSON.parse(msg.bodyToString() ?? '{}') as T : msg.bodyToString()
+
+			if (message_id == undefined) throw new Error('message_id cannot be undefined, please set it on publish')
+			if (message_timestamp == undefined) throw new Error('message_timestamp cannot be undefined, please set it on publish')
+			if (message_content == undefined) throw new Error('message_timestamp cannot be undefined, please set it on publish')
+
+			void callback({
+				message_id,
+				delivery_tag,
+				message_content,
+				message_timestamp,
+			})
+		})
+
+		await AMQP_CONSUMER.wait()
+	}
+
 	async in<T extends object | string>(opts: {
 		queue: string;
-	}): Promise<AMPQ_MESSAGE<T>> {
+	}): Promise<MESSAGE<T>> {
 		let value
 
 		const AMQP_CHANNEL = await this.#client.channel()
@@ -32,13 +81,16 @@ export default class Node {
 
 		const AMQP_CONSUMER = await AMQP_CHANNEL.basicConsume(opts.queue, { noAck: false, tag: opts.queue }, (msg) => {
 			const message_id = msg.properties.messageId
+			const delivery_tag = msg.deliveryTag
 			const message_timestamp = msg.properties.timestamp
 			const message_content = (msg.properties.contentType == 'application/json') ? JSON.parse(msg.bodyToString() ?? '{}') as T : msg.bodyToString()
 
 			if (message_id == undefined) throw new Error('message_id cannot be undefined, please set it on publish')
 			if (message_timestamp == undefined) throw new Error('message_timestamp cannot be undefined, please set it on publish')
+			if (message_content == undefined) throw new Error('message_timestamp cannot be undefined, please set it on publish')
 
 			value = {
+				delivery_tag,
 				message_id,
 				message_content,
 				message_timestamp,
@@ -80,7 +132,7 @@ export default class Node {
 			const promises = []
 			for (const [i, v] of data.entries()) {
 				const message_id = `${v.message_id}_${i}`
-				promises.push(AMQP_CHANNEL.basicPublish('amq.direct', opts.routing_key, JSON.stringify(v.content), { messageId: message_id, timestamp: new Date(), deliveryMode: 2, contentType: 'application/json' }).then(() => {return message_id}))
+				promises.push(AMQP_CHANNEL.basicPublish('amq.direct', opts.routing_key, JSON.stringify(v.content), { messageId: message_id, timestamp: new Date(), deliveryMode: 2, contentType: 'application/json' }).then(() => { return message_id }))
 			}
 			const message_ids = await Promise.all<string>(promises)
 			await AMQP_CHANNEL.close()
