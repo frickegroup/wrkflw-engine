@@ -48,8 +48,13 @@ importers:
   packages/deepl:
     specifiers:
       deepl-node: 1.6.0
+      esbuild: 0.15.9
+      tsm: 2.2.2
     dependencies:
       deepl-node: 1.6.0
+    devDependencies:
+      esbuild: 0.15.9
+      tsm: 2.2.2
 
   packages/log:
     specifiers: {}

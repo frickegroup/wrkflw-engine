@@ -2,11 +2,11 @@
   "compilerOptions": {
     "strict": true,
     "target": "ESNext",
-    "module": "ESNext",
+    "module": "Node16",
     "moduleResolution": "Node",
-    "outDir": "bin",
-    "declaration": true,
-    "sourceMap": true,
+    "alwaysStrict": true,
+    "outDir": "dist",
+    "sourceMap": false,
     "stripInternal": true,
     "experimentalDecorators": true,
     "pretty": true,
@@ -18,8 +18,12 @@
     "strictPropertyInitialization": true,
     "noImplicitAny": true,
     "useUnknownInCatchVariables": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true
   },
   "include": [
     "src/*.ts",
+    "build.ts"
   ],
 }
