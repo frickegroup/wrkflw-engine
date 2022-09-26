@@ -28,14 +28,14 @@ jobs:
       - name: install dependencies
         run: pnpm install
       - name: create and publish versions
-        uses: changesets/action@v1
+        uses: dotansimha/changesets-action@v1.3.3
         with:
           setupGitUser: true
-          version: "pnpm prerelease"
-          title: "build: release"
-          commit: "build: release"
-          createGithubReleases: true
-          publish: "pnpm release"
+          title: "Upcoming Release Changes"
+          commit: "chore(release): update monorepo packages"
+          createGithubReleases: aggregate
+          version: pnpm prerelease
+          publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
