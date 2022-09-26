@@ -1,7 +1,13 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base"
+    "config:js-app",
+    ":disableRateLimiting",
+    ":updateNotScheduled"
+  ],
+  "timezone": "Europe/Berlin",
+  "schedule": [
+    "before 6am on Friday"
   ],
   "rebaseWhen": "auto",
   "configMigration": true,
@@ -9,5 +15,13 @@
   "additionalReviewers": [
     "alexanderniebuhr"
   ],
-  "platformCommit": true
+  "platformCommit": true,
+  "packageRules": [
+    {
+      "matchDepTypes": [
+        "action"
+      ],
+      "pinDigests": true
+    }
+  ]
 }
