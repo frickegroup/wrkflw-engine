@@ -12,6 +12,11 @@ export default class Node {
 		source_language: SourceLanguageCode;
 		target_language: TargetLanguageCode;
 	}) {
+		if (text == '') return {
+			character_usage: 0,
+			translation: '',
+		}
+
 		const startUsage = await this.#client.getUsage()
 		const result = await this.#client.translateText(text, opts.source_language, opts.target_language)
 		const endUsage = await this.#client.getUsage()
