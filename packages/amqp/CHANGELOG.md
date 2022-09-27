@@ -1,5 +1,11 @@
 # @frickegroup/wrkflw-amqp
 
+## 0.1.7
+
+### Patch Changes
+
+- [#23](https://github.com/frickegroup/wrkflw-engine/pull/23) [`e3bd402`](https://github.com/frickegroup/wrkflw-engine/commit/e3bd4029a0c4af3ec0ef1b29a3685cea891ba0a4) Thanks [@alexanderniebuhr](https://github.com/alexanderniebuhr)! - Add support for long-lived channel subscription with acknowledging func
+
 ## 0.1.6
 
 ### Patch Changes
