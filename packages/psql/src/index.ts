@@ -13,6 +13,7 @@ export default class Node {
 		this.#db = createConnectionPool({
 			connectionString: url,
 			poolSize: 2,
+			bigIntMode: 'number',
 		})
 	}
 
