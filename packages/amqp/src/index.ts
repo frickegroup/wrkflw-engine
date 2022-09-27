@@ -46,7 +46,7 @@ export default class Node {
 		channel: number;
 		queue: string;
 		parallel: number;
-	}, callback: (msg: MESSAGE<T | string>) => Promise<void>) {
+	}, callback: (msg: MESSAGE<T | string>) => Promise<void> | void) {
 		const AMQP_CHANNEL = await this.#client.channel(opts.channel)
 		await AMQP_CHANNEL.basicQos(opts.parallel, undefined, true)
 
