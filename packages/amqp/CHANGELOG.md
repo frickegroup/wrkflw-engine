@@ -1,5 +1,13 @@
 # @frickegroup/wrkflw-amqp
 
+## 0.1.8
+
+### Patch Changes
+
+- [#25](https://github.com/frickegroup/wrkflw-engine/pull/25) [`607c1e0`](https://github.com/frickegroup/wrkflw-engine/commit/607c1e0b2913fd66112b0bc6a9e694fda1eafec4) Thanks [@alexanderniebuhr](https://github.com/alexanderniebuhr)! - `fix` allow syncronous and ansyncronous callback functions on `listen()`
+
+- [`b863a36`](https://github.com/frickegroup/wrkflw-engine/commit/b863a361b87228c758129b3b6bf302be9d9ed932) Thanks [@alexanderniebuhr](https://github.com/alexanderniebuhr)! - `fix` type generic improvements
+
 ## 0.1.7
 
 ### Patch Changes
