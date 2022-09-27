@@ -28,7 +28,7 @@ jobs:
       - name: install dependencies
         run: pnpm install
       - name: create and publish versions
-        uses: dotansimha/changesets-action@v1.3.3
+        uses: frickegroup/changesets-action@cbc5ff3569ae9861100a48b290f4e9c1b94e45b5
         with:
           setupGitUser: true
           title: "Upcoming Release Changes"
