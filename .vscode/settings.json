@@ -38,5 +38,11 @@
 
   "vscode-graphql.cacheSchemaFileForLookup": false,
   "xstate.nestTypegenFiles": false,
-  "explorer.fileNesting.enabled": false
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "*.ts": "${capture}.typegen.ts",
+    "package.json": "package-lock.json, yarn.lock, pnpm*, .eslint*, .node-version",
+    "tsconfig.json": "tsconfig.*.json"
+  }
 }
