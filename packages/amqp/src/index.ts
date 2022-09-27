@@ -1,10 +1,10 @@
 import { AMQPClient } from '@cloudamqp/amqp-client'
 
-interface MESSAGE<T> {
-	delivery_tag?: number;
+interface BASE_MESSAGE<T> {
+	delivery_tag: number;
 	message_id: string;
 	message_timestamp: Date;
-	message_content: T;
+	message_body: T;
 }
 
 export default class Node {
@@ -42,11 +42,11 @@ export default class Node {
 		await AMQP_CHANNEL.basicNack(opts.delivery_tag, true, false)
 	}
 
-	async listen<T extends object | string>(opts: {
+	async listen<T extends Record<string, unknown>>(opts: {
 		channel: number;
 		queue: string;
 		parallel: number;
-	}, callback: (msg: MESSAGE<T | string>) => Promise<void> | void) {
+	}, callback: (msg: BASE_MESSAGE<T>) => Promise<void> | void) {
 		const AMQP_CHANNEL = await this.#client.channel(opts.channel)
 		await AMQP_CHANNEL.basicQos(opts.parallel, undefined, true)
 
@@ -54,26 +54,27 @@ export default class Node {
 			const message_id = msg.properties.messageId
 			const delivery_tag = msg.deliveryTag
 			const message_timestamp = msg.properties.timestamp
-			const message_content = (msg.properties.contentType == 'application/json') ? JSON.parse(msg.bodyToString() ?? '{}') as T : msg.bodyToString()
+			if(msg.properties.contentType !== 'application/json') throw new Error('message_content must be of type application/json')
+			if (msg.bodySize == 0) throw new Error('message cannot be empty')
+			const message_content = JSON.parse(msg.bodyToString() ?? '{}') as T
 
 			if (message_id == undefined) throw new Error('message_id cannot be undefined, please set it on publish')
 			if (message_timestamp == undefined) throw new Error('message_timestamp cannot be undefined, please set it on publish')
-			if (message_content == undefined) throw new Error('message_timestamp cannot be undefined, please set it on publish')
 
 			void callback({
-				message_id,
 				delivery_tag,
-				message_content,
+				message_id,
 				message_timestamp,
+				message_body: message_content,
 			})
 		})
 
 		await AMQP_CONSUMER.wait()
 	}
 
-	async in<T extends object | string>(opts: {
+	async in<T extends Record<string, unknown>>(opts: {
 		queue: string;
-	}): Promise<MESSAGE<T>> {
+	}): Promise<BASE_MESSAGE<T>> {
 		let value
 
 		const AMQP_CHANNEL = await this.#client.channel()
@@ -83,11 +84,12 @@ export default class Node {
 			const message_id = msg.properties.messageId
 			const delivery_tag = msg.deliveryTag
 			const message_timestamp = msg.properties.timestamp
-			const message_content = (msg.properties.contentType == 'application/json') ? JSON.parse(msg.bodyToString() ?? '{}') as T : msg.bodyToString()
+			if(msg.properties.contentType !== 'application/json') throw new Error('message_content must be of type application/json')
+			if (msg.bodySize == 0) throw new Error('message cannot be empty')
+			const message_content = JSON.parse(msg.bodyToString() ?? '{}') as T
 
 			if (message_id == undefined) throw new Error('message_id cannot be undefined, please set it on publish')
 			if (message_timestamp == undefined) throw new Error('message_timestamp cannot be undefined, please set it on publish')
-			if (message_content == undefined) throw new Error('message_timestamp cannot be undefined, please set it on publish')
 
 			value = {
 				delivery_tag,
