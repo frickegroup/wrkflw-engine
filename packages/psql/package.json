@@ -22,7 +22,7 @@
     "@databases/pg": "5.4.1"
   },
   "devDependencies": {
-    "esbuild": "0.15.9",
+    "esbuild": "0.15.10",
     "tsm": "2.2.2"
   },
   "peerDependencies": {},
