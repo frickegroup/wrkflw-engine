@@ -21,7 +21,7 @@
     "@cloudamqp/amqp-client": "2.1.0"
   },
   "devDependencies": {
-    "esbuild": "0.15.9",
+    "esbuild": "0.15.10",
     "tsm": "2.2.2"
   },
   "peerDependencies": {},
