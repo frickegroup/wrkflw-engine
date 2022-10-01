@@ -7,6 +7,11 @@ interface BASE_MESSAGE<T> {
 	message_body: T;
 }
 
+interface PUBLISH_MESSAGE {
+	message_id: string;
+	content: Record<string, unknown>;
+}
+
 export default class Node {
 	#client: AMQPClient
 
@@ -54,7 +59,7 @@ export default class Node {
 			const message_id = msg.properties.messageId
 			const delivery_tag = msg.deliveryTag
 			const message_timestamp = msg.properties.timestamp
-			if(msg.properties.contentType !== 'application/json') throw new Error('message_content must be of type application/json')
+			if (msg.properties.contentType !== 'application/json') throw new Error('message_content must be of type application/json')
 			if (msg.bodySize == 0) throw new Error('message cannot be empty')
 			const message_content = JSON.parse(msg.bodyToString() ?? '{}') as T
 
@@ -84,7 +89,7 @@ export default class Node {
 			const message_id = msg.properties.messageId
 			const delivery_tag = msg.deliveryTag
 			const message_timestamp = msg.properties.timestamp
-			if(msg.properties.contentType !== 'application/json') throw new Error('message_content must be of type application/json')
+			if (msg.properties.contentType !== 'application/json') throw new Error('message_content must be of type application/json')
 			if (msg.bodySize == 0) throw new Error('message cannot be empty')
 			const message_content = JSON.parse(msg.bodyToString() ?? '{}') as T
 
@@ -112,25 +117,19 @@ export default class Node {
 		return value
 	}
 
-	async out(opts: {
-		routing_key: string;
-	}, data: {
-		message_id: string;
-		content: object;
-	} | {
-		message_id: string;
-		content: object;
-	}[]): Promise<string | string[]> {
-		// check if data is array
-		const is_array = Array.isArray(data)
+	async out(opts: { routing_key: string }, message: PUBLISH_MESSAGE): Promise<string>;
+	async out(opts: { routing_key: string }, messages: PUBLISH_MESSAGE[]): Promise<string[]>;
+	async out(opts: { routing_key: string }, tData: unknown): Promise<unknown> {
 		const AMQP_CHANNEL = await this.#client.channel()
-		if (!is_array) {
+		if (!Array.isArray(tData)) {
+			const data = tData as PUBLISH_MESSAGE
 			const message_id = data.message_id
 			await AMQP_CHANNEL.basicPublish('amq.direct', opts.routing_key, JSON.stringify(data.content), { messageId: message_id, timestamp: new Date(), deliveryMode: 2, contentType: 'application/json' })
 			await AMQP_CHANNEL.close()
 
 			return message_id
 		} else {
+			const data = tData as PUBLISH_MESSAGE[]
 			const promises = []
 			for (const [i, v] of data.entries()) {
 				const message_id = `${v.message_id}_${i}`
