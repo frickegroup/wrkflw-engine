@@ -3,7 +3,8 @@
   "extends": [
     "config:js-app",
     ":disableRateLimiting",
-    ":updateNotScheduled"
+    ":updateNotScheduled",
+    "helpers:pinGitHubActionDigests"
   ],
   "timezone": "Europe/Berlin",
   "schedule": [
@@ -15,13 +16,5 @@
   "additionalReviewers": [
     "alexanderniebuhr"
   ],
-  "platformCommit": true,
-  "packageRules": [
-    {
-      "matchDepTypes": [
-        "action"
-      ],
-      "pinDigests": true
-    }
-  ]
+  "platformCommit": true
 }
