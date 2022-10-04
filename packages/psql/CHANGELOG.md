@@ -1,5 +1,11 @@
 # @frickegroup/wrkflw-psql
 
+## 0.1.2
+
+### Patch Changes
+
+- [#34](https://github.com/frickegroup/wrkflw-engine/pull/34) [`e0f208a`](https://github.com/frickegroup/wrkflw-engine/commit/e0f208a1723acd46d145b4420e9e0c287bd2c2ec) Thanks [@alexanderniebuhr](https://github.com/alexanderniebuhr)! - add options `poolSize` to psql constructor
+
 ## 0.1.1
 
 ### Patch Changes
