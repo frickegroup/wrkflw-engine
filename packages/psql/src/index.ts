@@ -9,10 +9,10 @@ export default class Node {
 	 *
 	 * @param url connection url as string
 	 */
-	constructor(url: string) {
+	constructor(url: string, poolSize = 2) {
 		this.#db = createConnectionPool({
 			connectionString: url,
-			poolSize: 2,
+			poolSize: poolSize,
 			bigIntMode: 'number',
 		})
 	}
