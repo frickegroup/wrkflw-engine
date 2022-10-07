@@ -47,7 +47,7 @@ export default class Node {
 		await AMQP_CHANNEL.basicNack(opts.delivery_tag, true, false)
 	}
 
-	async listen<T extends Record<string, unknown>>(opts: {
+	async listen<T extends object>(opts: {
 		channel: number;
 		queue: string;
 		parallel: number;
