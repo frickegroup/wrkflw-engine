@@ -1,5 +1,11 @@
 # @frickegroup/wrkflw-psql
 
+## 0.1.3
+
+### Patch Changes
+
+- [#41](https://github.com/frickegroup/wrkflw-engine/pull/41) [`97a5e28`](https://github.com/frickegroup/wrkflw-engine/commit/97a5e2848d429372f77059c3b47075cf151c6432) Thanks [@alexanderniebuhr](https://github.com/alexanderniebuhr)! - `fix` transaction return type
+
 ## 0.1.2
 
 ### Patch Changes
