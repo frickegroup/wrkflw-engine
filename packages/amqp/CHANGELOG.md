@@ -1,5 +1,11 @@
 # @frickegroup/wrkflw-amqp
 
+## 0.1.9
+
+### Patch Changes
+
+- [#41](https://github.com/frickegroup/wrkflw-engine/pull/41) [`41e4410`](https://github.com/frickegroup/wrkflw-engine/commit/41e441034b752b1d74ea4b8675631933379a7467) Thanks [@alexanderniebuhr](https://github.com/alexanderniebuhr)! - `fix` type generic
+
 ## 0.1.8
 
 ### Patch Changes
