@@ -1,5 +1,15 @@
 # @frickegroup/wrkflw-amqp
 
+## 0.1.11
+
+### Patch Changes
+
+- [#45](https://github.com/frickegroup/wrkflw-engine/pull/45) [`d7f0f25`](https://github.com/frickegroup/wrkflw-engine/commit/d7f0f2515c703d62e2c72ca2c46ec973997666d8) Thanks [@alexanderniebuhr](https://github.com/alexanderniebuhr)! - dependencies updates:
+
+  - Added dependency [`nanoid@4.0.0` ↗︎](https://www.npmjs.com/package/nanoid/v/4.0.0) (to `dependencies`)
+
+- [#45](https://github.com/frickegroup/wrkflw-engine/pull/45) [`d7f0f25`](https://github.com/frickegroup/wrkflw-engine/commit/d7f0f2515c703d62e2c72ca2c46ec973997666d8) Thanks [@alexanderniebuhr](https://github.com/alexanderniebuhr)! - allow automatic generation of message_id if non is provided
+
 ## 0.1.10
 
 ### Patch Changes
