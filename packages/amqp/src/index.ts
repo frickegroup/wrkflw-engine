@@ -1,4 +1,7 @@
 import { AMQPClient } from '@cloudamqp/amqp-client'
+import { customAlphabet } from 'nanoid'
+
+const nanoid = customAlphabet('6789BCDFGHJKLMNPQRTW', 8)
 
 interface BASE_MESSAGE<T> {
 	delivery_tag: number;
@@ -8,7 +11,7 @@ interface BASE_MESSAGE<T> {
 }
 
 interface PUBLISH_MESSAGE {
-	message_id: string;
+	message_id?: string;
 	content: object;
 }
 
@@ -123,7 +126,7 @@ export default class Node {
 		const AMQP_CHANNEL = await this.#client.channel()
 		if (!Array.isArray(tData)) {
 			const data = tData as PUBLISH_MESSAGE
-			const message_id = data.message_id
+			const message_id = data.message_id ?? nanoid()
 			await AMQP_CHANNEL.basicPublish('amq.direct', opts.routing_key, JSON.stringify(data.content), { messageId: message_id, timestamp: new Date(), deliveryMode: 2, contentType: 'application/json' })
 			await AMQP_CHANNEL.close()
 
@@ -132,7 +135,7 @@ export default class Node {
 			const data = tData as PUBLISH_MESSAGE[]
 			const promises = []
 			for (const m of data) {
-				const message_id = m.message_id
+				const message_id = m.message_id ?? nanoid()
 				promises.push(AMQP_CHANNEL.basicPublish('amq.direct', opts.routing_key, JSON.stringify(m.content), { messageId: message_id, timestamp: new Date(), deliveryMode: 2, contentType: 'application/json' }).then(() => { return message_id }))
 			}
 			const message_ids = await Promise.all<string>(promises)
