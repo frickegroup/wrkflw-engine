@@ -9,7 +9,7 @@ interface BASE_MESSAGE<T> {
 
 interface PUBLISH_MESSAGE {
 	message_id: string;
-	content: Record<string, unknown>;
+	content: object;
 }
 
 export default class Node {
@@ -131,9 +131,9 @@ export default class Node {
 		} else {
 			const data = tData as PUBLISH_MESSAGE[]
 			const promises = []
-			for (const [i, v] of data.entries()) {
-				const message_id = `${v.message_id}_${i}`
-				promises.push(AMQP_CHANNEL.basicPublish('amq.direct', opts.routing_key, JSON.stringify(v.content), { messageId: message_id, timestamp: new Date(), deliveryMode: 2, contentType: 'application/json' }).then(() => { return message_id }))
+			for (const m of data) {
+				const message_id = m.message_id
+				promises.push(AMQP_CHANNEL.basicPublish('amq.direct', opts.routing_key, JSON.stringify(m.content), { messageId: message_id, timestamp: new Date(), deliveryMode: 2, contentType: 'application/json' }).then(() => { return message_id }))
 			}
 			const message_ids = await Promise.all<string>(promises)
 			await AMQP_CHANNEL.close()
