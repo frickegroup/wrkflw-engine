@@ -23,7 +23,7 @@ export default class Node {
 	 * @returns Array of rows with type
 	 */
 	query<T extends object>(q: SQLQuery) {
-		return this.#db.tx<T[]>((tx) => {
+		return this.#db.tx<T[] | []>((tx) => {
 			return tx.query(q) as Promise<T[]>
 		}, {})
 	}
