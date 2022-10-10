@@ -120,15 +120,15 @@ export default class Node {
 		return value
 	}
 
-	async out(opts: { routing_key: string }, message: PUBLISH_MESSAGE): Promise<string>;
-	async out(opts: { routing_key: string }, messages: PUBLISH_MESSAGE[]): Promise<string[]>;
-	async out(opts: { routing_key: string }, tData: unknown): Promise<unknown> {
-		const AMQP_CHANNEL = await this.#client.channel()
+	async out(opts: { routing_key: string; channel?: number }, message: PUBLISH_MESSAGE): Promise<string>;
+	async out(opts: { routing_key: string; channel?: number }, messages: PUBLISH_MESSAGE[]): Promise<string[]>;
+	async out(opts: { routing_key: string; channel?: number }, tData: unknown): Promise<unknown> {
+		const AMQP_CHANNEL = await this.#client.channel(opts.channel)
 		if (!Array.isArray(tData)) {
 			const data = tData as PUBLISH_MESSAGE
 			const message_id = data.message_id ?? nanoid()
 			await AMQP_CHANNEL.basicPublish('amq.direct', opts.routing_key, JSON.stringify(data.content), { messageId: message_id, timestamp: new Date(), deliveryMode: 2, contentType: 'application/json' })
-			await AMQP_CHANNEL.close()
+			if(!opts.channel) await AMQP_CHANNEL.close()
 
 			return message_id
 		} else {
@@ -139,7 +139,7 @@ export default class Node {
 				promises.push(AMQP_CHANNEL.basicPublish('amq.direct', opts.routing_key, JSON.stringify(m.content), { messageId: message_id, timestamp: new Date(), deliveryMode: 2, contentType: 'application/json' }).then(() => { return message_id }))
 			}
 			const message_ids = await Promise.all<string>(promises)
-			await AMQP_CHANNEL.close()
+			if(!opts.channel) await AMQP_CHANNEL.close()
 
 			return message_ids
 		}
