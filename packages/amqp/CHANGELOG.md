@@ -1,5 +1,11 @@
 # @frickegroup/wrkflw-amqp
 
+## 0.1.12
+
+### Patch Changes
+
+- [`fe2650a`](https://github.com/frickegroup/wrkflw-engine/commit/fe2650ae394bcf26a60bd701a21a209a13c70c11) Thanks [@alexanderniebuhr](https://github.com/alexanderniebuhr)! - `fix` amqp channel churn
+
 ## 0.1.11
 
 ### Patch Changes
