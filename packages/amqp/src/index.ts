@@ -1,5 +1,6 @@
 import { AMQPClient } from '@cloudamqp/amqp-client'
 import { customAlphabet } from 'nanoid'
+import { Writable } from 'node:stream'
 
 const nanoid = customAlphabet('6789BCDFGHJKLMNPQRTW', 8)
 
@@ -17,6 +18,8 @@ interface PUBLISH_MESSAGE {
 
 export default class Node {
 	#client: AMQPClient
+
+	#publishers: Record<string, Writable> = {}
 
 	/**
 	 *
@@ -120,26 +123,56 @@ export default class Node {
 		return value
 	}
 
-	async out(opts: { routing_key: string; channel?: number }, message: PUBLISH_MESSAGE): Promise<string>;
-	async out(opts: { routing_key: string; channel?: number }, messages: PUBLISH_MESSAGE[]): Promise<string[]>;
-	async out(opts: { routing_key: string; channel?: number }, tData: unknown): Promise<unknown> {
+	async addPublisher(opts: {
+		routing_key: string;
+		channel?: number;
+	}) {
 		const AMQP_CHANNEL = await this.#client.channel(opts.channel)
+		this.#publishers[opts.routing_key] = new Writable({
+			objectMode: true,
+			write: (chunk: PUBLISH_MESSAGE, encoding, callback) => {
+				AMQP_CHANNEL.basicPublish('amq.direct', opts.routing_key, JSON.stringify(chunk.content), { messageId: chunk.message_id, timestamp: new Date(), deliveryMode: 2, contentType: 'application/json' })
+					.then(() => callback())
+					.catch(() => callback(new Error('PIPE')))
+			},
+		})
+	}
+
+	async out(opts: { routing_key: string }, message: PUBLISH_MESSAGE): Promise<string>;
+	async out(opts: { routing_key: string }, messages: PUBLISH_MESSAGE[]): Promise<string[]>;
+	async out(opts: { routing_key: string }, tData: unknown): Promise<unknown> {
 		if (!Array.isArray(tData)) {
 			const data = tData as PUBLISH_MESSAGE
 			const message_id = data.message_id ?? nanoid()
-			await AMQP_CHANNEL.basicPublish('amq.direct', opts.routing_key, JSON.stringify(data.content), { messageId: message_id, timestamp: new Date(), deliveryMode: 2, contentType: 'application/json' })
-			if(!opts.channel) await AMQP_CHANNEL.close()
 
-			return message_id
+			const id = await new Promise<string>((resolve, reject) => {
+				this.#publishers[opts.routing_key].write({
+					message_id: message_id,
+					content: data.content,
+				}, (error) => {
+					if (error) reject(error)
+					resolve(message_id)
+				})
+			})
+
+			return id
 		} else {
 			const data = tData as PUBLISH_MESSAGE[]
-			const promises = []
+			const message_ids: string[] = []
 			for (const m of data) {
 				const message_id = m.message_id ?? nanoid()
-				promises.push(AMQP_CHANNEL.basicPublish('amq.direct', opts.routing_key, JSON.stringify(m.content), { messageId: message_id, timestamp: new Date(), deliveryMode: 2, contentType: 'application/json' }).then(() => { return message_id }))
+
+				const id = await new Promise<string>((resolve, reject) => {
+					this.#publishers[opts.routing_key].write({
+						message_id: message_id,
+						content: m.content,
+					}, (error) => {
+						if (error) reject(error)
+						resolve(message_id)
+					})
+				})
+				message_ids.push(id)
 			}
-			const message_ids = await Promise.all<string>(promises)
-			if(!opts.channel) await AMQP_CHANNEL.close()
 
 			return message_ids
 		}
