@@ -19,7 +19,7 @@
     "prepublish": "pnpm build && pnpm dts"
   },
   "dependencies": {
-    "deepl-node": "1.6.0"
+    "deepl-node": "1.7.1"
   },
   "devDependencies": {
     "esbuild": "0.15.10",

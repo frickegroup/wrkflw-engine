@@ -5,7 +5,7 @@ export default class Node {
 	#client: Translator
 
 	constructor(authKey: string) {
-		this.#client = new Translator(authKey, { maxRetries: 3, minTimeout: 10_000 })
+		this.#client = new Translator(authKey, { maxRetries: 10, minTimeout: 25_000 })
 	}
 
 	public async translate(text: string, opts: {
@@ -18,7 +18,10 @@ export default class Node {
 		}
 
 		const startUsage = await this.#client.getUsage()
-		const result = await this.#client.translateText(text, opts.source_language, opts.target_language)
+		const result = await this.#client.translateText(text, opts.source_language, opts.target_language, {
+			preserveFormatting: true,
+			tagHandling: 'html',
+		})
 		const endUsage = await this.#client.getUsage()
 
 		let characterUsage: number | undefined
