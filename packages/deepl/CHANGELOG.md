@@ -1,5 +1,11 @@
 # @frickegroup/wrkflw-deepl
 
+## 0.1.2
+
+### Patch Changes
+
+- [`5c28ffd`](https://github.com/frickegroup/wrkflw-engine/commit/5c28ffd2dfe300e07f78fba379d3f02072f0c061) Thanks [@alexanderniebuhr](https://github.com/alexanderniebuhr)! - improve configuration parameters
+
 ## 0.1.1
 
 ### Patch Changes
