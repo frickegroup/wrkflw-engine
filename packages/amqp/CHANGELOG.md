@@ -1,5 +1,11 @@
 # @frickegroup/wrkflw-amqp
 
+## 0.1.13
+
+### Patch Changes
+
+- [`6c12c33`](https://github.com/frickegroup/wrkflw-engine/commit/6c12c331f74ae81744d00f39408714fbf7433389) Thanks [@alexanderniebuhr](https://github.com/alexanderniebuhr)! - `fix` amqp concurrent publishing
+
 ## 0.1.12
 
 ### Patch Changes
