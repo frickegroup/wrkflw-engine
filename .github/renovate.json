@@ -13,8 +13,6 @@
   "rebaseWhen": "auto",
   "configMigration": true,
   "dependencyDashboardTitle": ":package: Dependency Dashboard by `renovate[bot]` :robot:",
-  "additionalReviewers": [
-    "alexanderniebuhr"
-  ],
+  "additionalReviewers": [],
   "platformCommit": true
 }
