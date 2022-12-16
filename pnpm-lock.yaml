@@ -38,12 +38,12 @@ importers:
 
   packages/amqp:
     specifiers:
-      '@cloudamqp/amqp-client': 2.1.0
+      '@cloudamqp/amqp-client': 2.1.1
       esbuild: 0.15.10
       nanoid: 4.0.0
       tsm: 2.2.2
     dependencies:
-      '@cloudamqp/amqp-client': 2.1.0
+      '@cloudamqp/amqp-client': 2.1.1
       nanoid: 4.0.0
     devDependencies:
       esbuild: 0.15.10
@@ -303,8 +303,8 @@ packages:
       prettier: 2.7.1
     dev: true
 
-  /@cloudamqp/amqp-client/2.1.0:
-    resolution: {integrity: sha512-2dPPvsSpFFjX73zfpaRBL1abm6M3AdZmuJibDKZAvG+li9+yyALLmQ/7s3qN6n4aFPAHU4RThL7NK+qPUU3/Lw==}
+  /@cloudamqp/amqp-client/2.1.1:
+    resolution: {integrity: sha512-u4nOBfpBTEiohQ/ThJVLmHx+G7mUt1aTXsLqhGVZAnTnA1AZpq/ja1Lhx7equRuE48AhQKS/UDQpV+7grLEF4Q==}
     engines: {node: '>=12.0.0'}
     dev: false
 
