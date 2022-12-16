@@ -19,7 +19,7 @@
     "prepublish": "pnpm build && pnpm dts"
   },
   "dependencies": {
-    "@cloudamqp/amqp-client": "2.1.0",
+    "@cloudamqp/amqp-client": "2.1.1",
     "nanoid": "4.0.0"
   },
   "devDependencies": {
