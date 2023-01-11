@@ -23,7 +23,7 @@
     "nanoid": "4.0.0"
   },
   "devDependencies": {
-    "esbuild": "0.15.10",
+    "esbuild": "0.16.17",
     "tsm": "2.2.2"
   },
   "peerDependencies": {},
