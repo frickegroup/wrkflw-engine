@@ -51,11 +51,11 @@ importers:
 
   packages/deepl:
     specifiers:
-      deepl-node: 1.7.1
+      deepl-node: 1.7.2
       esbuild: 0.15.10
       tsm: 2.2.2
     dependencies:
-      deepl-node: 1.7.1
+      deepl-node: 1.7.2
     devDependencies:
       esbuild: 0.15.10
       tsm: 2.2.2
@@ -1062,8 +1062,8 @@ packages:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
     dev: true
 
-  /deepl-node/1.7.1:
-    resolution: {integrity: sha512-ugd8S6VM/uDqFIeMt7Io7Cei6ckrvhY4xR4qrdMuG2XLZ/mO2jVlQ2XnuFjTI2PIVMkodMGe4kMCtIZlzi/5Qg==}
+  /deepl-node/1.7.2:
+    resolution: {integrity: sha512-5+xRKCrE4TpRKUVT4+Jc8hkUx8DwmQwx4NDgWXLJ1S1bstk4xiIwOdYOTnE1Vbp/N4DknEoq7K6XldXln/O9sw==}
     engines: {node: '>=12.0'}
     dependencies:
       '@types/node': 18.7.13
