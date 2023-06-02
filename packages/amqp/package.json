@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@cloudamqp/amqp-client": "2.1.0",
-    "nanoid": "4.0.0"
+    "nanoid": "4.0.2"
   },
   "devDependencies": {
     "esbuild": "0.15.10",
