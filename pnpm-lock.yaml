@@ -40,11 +40,11 @@ importers:
     specifiers:
       '@cloudamqp/amqp-client': 2.1.0
       esbuild: 0.15.10
-      nanoid: 4.0.0
+      nanoid: 4.0.2
       tsm: 2.2.2
     dependencies:
       '@cloudamqp/amqp-client': 2.1.0
-      nanoid: 4.0.0
+      nanoid: 4.0.2
     devDependencies:
       esbuild: 0.15.10
       tsm: 2.2.2
@@ -2616,8 +2616,8 @@ packages:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
     dev: true
 
-  /nanoid/4.0.0:
-    resolution: {integrity: sha512-IgBP8piMxe/gf73RTQx7hmnhwz0aaEXYakvqZyE302IXW3HyVNhdNGC+O2MwMAVhLEnvXlvKtGbtJf6wvHihCg==}
+  /nanoid/4.0.2:
+    resolution: {integrity: sha512-7ZtY5KTCNheRGfEFxnedV5zFiORN1+Y1N6zvPTnHQd8ENUvfaDBeuJDZb2bN/oXwXxu3qkTXDzy57W5vAmDTBw==}
     engines: {node: ^14 || ^16 || >=18}
     hasBin: true
     dev: false
