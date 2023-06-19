@@ -11,7 +11,7 @@ importers:
       '@typescript-eslint/parser': 5.38.1
       esbuild: 0.15.10
       eslint: 8.24.0
-      eslint-config-standard: 17.0.0
+      eslint-config-standard: 17.1.0
       eslint-define-config: 1.7.0
       eslint-plugin-import: 2.26.0
       eslint-plugin-n: 15.3.0
@@ -27,7 +27,7 @@ importers:
       '@typescript-eslint/parser': 5.38.1_ypn2ylkkyfa5i233caldtndbqa
       esbuild: 0.15.10
       eslint: 8.24.0
-      eslint-config-standard: 17.0.0_4ybqc3giaxsbo5btq74wfmkary
+      eslint-config-standard: 17.1.0_4ybqc3giaxsbo5btq74wfmkary
       eslint-define-config: 1.7.0
       eslint-plugin-import: 2.26.0_gofx6msuqd4luqedfouzks2s4u
       eslint-plugin-n: 15.3.0_eslint@8.24.0
@@ -1617,12 +1617,13 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /eslint-config-standard/17.0.0_4ybqc3giaxsbo5btq74wfmkary:
-    resolution: {integrity: sha512-/2ks1GKyqSOkH7JFvXJicu0iMpoojkwB+f5Du/1SC0PtBL+s8v30k9njRZ21pm2drKYm2342jFnGWzttxPmZVg==}
+  /eslint-config-standard/17.1.0_4ybqc3giaxsbo5btq74wfmkary:
+    resolution: {integrity: sha512-IwHwmaBNtDK4zDHQukFDW5u/aTb8+meQWZvNFWkiGmbWjD6bqyuSSBxxXKkCftCUzc1zwCH2m/baCNDLGmuO5Q==}
+    engines: {node: '>=12.0.0'}
     peerDependencies:
       eslint: ^8.0.1
       eslint-plugin-import: ^2.25.2
-      eslint-plugin-n: ^15.0.0
+      eslint-plugin-n: '^15.0.0 || ^16.0.0 '
       eslint-plugin-promise: ^6.0.0
     dependencies:
       eslint: 8.24.0
