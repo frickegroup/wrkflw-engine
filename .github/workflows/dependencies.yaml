@@ -7,6 +7,6 @@ jobs:
       - uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # tag=v3.1.0
         with:
           fetch-depth: 0
-      - uses: "the-guild-org/changesets-dependencies-action@9d1effd4882f5af2cd3f10dea7f131a4e9fbeb71" # tag=v1.1.0
+      - uses: "the-guild-org/changesets-dependencies-action@f11b16181c79e07d62b112c2f32c9db534a9df09" # v1.2.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
