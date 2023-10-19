@@ -19,7 +19,7 @@
     "prepublish": "pnpm build && pnpm dts"
   },
   "dependencies": {
-    "@databases/pg": "5.4.1"
+    "@databases/pg": "5.5.0"
   },
   "devDependencies": {
     "esbuild": "0.15.10",
