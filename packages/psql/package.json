@@ -26,10 +26,10 @@
     "tsm": "2.2.2"
   },
   "peerDependencies": {},
-  "packageManager": "pnpm@7.14.2",
+  "packageManager": "pnpm@8.15.7",
   "engines": {
     "node": "16.17.1",
-    "pnpm": "7.14.2"
+    "pnpm": "8.15.7"
   },
   "access": "public"
 }
