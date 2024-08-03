@@ -26,9 +26,5 @@
     "tsm": "2.2.2"
   },
   "peerDependencies": {},
-  "packageManager": "pnpm@7.14.2",
-  "engines": {
-    "pnpm": "7.14.2"
-  },
   "access": "public"
 }
