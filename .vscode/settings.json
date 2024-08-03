@@ -35,7 +35,6 @@
     "source.addMissingImports": true,
   },
   "debug.console.closeOnEnd": false,
-
   "vscode-graphql.cacheSchemaFileForLookup": false,
   "xstate.nestTypegenFiles": false,
   "explorer.fileNesting.enabled": true,
@@ -44,5 +43,10 @@
     "*.ts": "${capture}.typegen.ts",
     "package.json": "package-lock.json, yarn.lock, pnpm*, .eslint*, .node-version",
     "tsconfig.json": "tsconfig.*.json"
-  }
+  },
+  "nodejs-testing.pretest": [
+    "pnpm",
+    "run",
+    "test"
+  ]
 }

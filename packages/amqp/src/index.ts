@@ -2,7 +2,7 @@ import { AMQPClient } from '@cloudamqp/amqp-client'
 import { customAlphabet } from 'nanoid'
 import { Writable } from 'node:stream'
 
-const nanoid = customAlphabet('6789BCDFGHJKLMNPQRTW', 8)
+export const nanoid = customAlphabet('6789BCDFGHJKLMNPQRTW', 8)
 
 interface BASE_MESSAGE<T> {
 	delivery_tag: number;
