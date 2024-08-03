@@ -1,9 +1,9 @@
-import { default as createConnectionPool } from '@databases/pg'
+import { default as createConnectionPool } from '@databases/pg';
 
-import type { ConnectionPool, SQLQuery } from '@databases/pg'
+import type { ConnectionPool, SQLQuery } from '@databases/pg';
 
 export default class Node {
-	#db: ConnectionPool
+	#db: ConnectionPool;
 
 	/**
 	 *
@@ -14,7 +14,7 @@ export default class Node {
 			connectionString: url,
 			poolSize: poolSize,
 			bigIntMode: 'number',
-		})
+		});
 	}
 
 	/**
@@ -24,9 +24,9 @@ export default class Node {
 	 */
 	query<T extends object>(q: SQLQuery) {
 		return this.#db.tx<T[] | []>((tx) => {
-			return tx.query(q) as Promise<T[]>
-		}, {})
+			return tx.query(q) as Promise<T[]>;
+		}, {});
 	}
 }
 
-export { sql } from '@databases/pg'
+export { sql } from '@databases/pg';

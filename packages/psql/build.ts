@@ -1,10 +1,10 @@
-import { buildSync } from 'esbuild'
-import { builtinModules } from 'node:module'
-import * as pkg from './package.json'
+import { builtinModules } from 'node:module';
+import { buildSync } from 'esbuild';
+import * as pkg from './package.json';
 
-const dependencies = Object.keys(pkg.dependencies)
-const peerDependencies = Object.keys(pkg.peerDependencies)
-const node = `node${pkg.engines.node}`
+const dependencies = Object.keys(pkg.dependencies);
+const peerDependencies = Object.keys(pkg.peerDependencies);
+const node = `node${pkg.engines.node}`;
 
 buildSync({
 	entryPoints: ['src/index.ts'],
@@ -19,9 +19,5 @@ buildSync({
 	sourceRoot: 'src',
 	treeShaking: true,
 	logLevel: 'debug',
-	external: [
-		...builtinModules,
-		...dependencies,
-		...peerDependencies,
-	],
-})
+	external: [...builtinModules, ...dependencies, ...peerDependencies],
+});
