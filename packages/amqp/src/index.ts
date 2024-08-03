@@ -117,7 +117,6 @@ export default class Node {
 
 		await AMQP_CHANNEL.close()
 
-		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 		if (value == undefined) throw new Error('issue receiving message')
 
 		return value
