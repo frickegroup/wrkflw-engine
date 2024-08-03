@@ -12,18 +12,16 @@
   },
   "files": ["dist"],
   "scripts": {
-    "build": "tsm build.ts",
-    "dts": "tsc  --project tsconfig.dts.json",
-    "prepublish": "pnpm build && pnpm dts"
+    "prepublish": "rimraf dist && rimraf tsconfig.tsbuildinfo && tsc"
   },
   "dependencies": {
     "@cloudamqp/amqp-client": "2.1.0",
     "nanoid": "4.0.0"
   },
   "devDependencies": {
-    "esbuild": "0.15.10",
-    "tsm": "2.2.2"
+    "rimraf": "6.0.1"
   },
   "peerDependencies": {},
-  "access": "public"
+  "access": "public",
+  "rootDir": "src"
 }

@@ -29,18 +29,18 @@ export default class Node {
 		this.#client = new AMQPClient(url);
 	}
 
-	async connect() {
+	async connect(): Promise<void> {
 		await this.#client.connect();
 	}
 
-	async close() {
+	async close(): Promise<void> {
 		await this.#client.close();
 	}
 
 	async ack(opts: {
 		channel: number;
 		delivery_tag: number;
-	}) {
+	}): Promise<void> {
 		const AMQP_CHANNEL = await this.#client.channel(opts.channel);
 		await AMQP_CHANNEL.basicAck(opts.delivery_tag, false);
 	}
@@ -48,7 +48,7 @@ export default class Node {
 	async reject(opts: {
 		channel: number;
 		delivery_tag: number;
-	}) {
+	}): Promise<void> {
 		const AMQP_CHANNEL = await this.#client.channel(opts.channel);
 		await AMQP_CHANNEL.basicNack(opts.delivery_tag, true, false);
 	}
@@ -60,7 +60,7 @@ export default class Node {
 			parallel: number;
 		},
 		callback: (msg: BASE_MESSAGE<T>) => Promise<void> | void,
-	) {
+	): Promise<void> {
 		const AMQP_CHANNEL = await this.#client.channel(opts.channel);
 		await AMQP_CHANNEL.basicQos(opts.parallel, undefined, true);
 
@@ -143,7 +143,7 @@ export default class Node {
 	async addPublisher(opts: {
 		routing_key: string;
 		channel?: number;
-	}) {
+	}): Promise<void> {
 		const AMQP_CHANNEL = await this.#client.channel(opts.channel);
 		this.#publishers[opts.routing_key] = new Writable({
 			objectMode: true,

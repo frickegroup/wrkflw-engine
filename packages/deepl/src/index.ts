@@ -14,7 +14,10 @@ export default class Node {
 			source_language: SourceLanguageCode;
 			target_language: TargetLanguageCode;
 		},
-	) {
+	): Promise<{
+		character_usage: number | undefined;
+		translation: string;
+	}> {
 		if (text === '')
 			return {
 				character_usage: 0,
