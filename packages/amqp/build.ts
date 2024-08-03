@@ -4,7 +4,7 @@ import * as pkg from './package.json'
 
 const dependencies = Object.keys(pkg.dependencies)
 const peerDependencies = Object.keys(pkg.peerDependencies)
-const node = `node${pkg.engines.node}`
+// const node = `node${pkg.engines.node}`
 
 buildSync({
 	entryPoints: ['src/index.ts'],
@@ -12,7 +12,7 @@ buildSync({
 	minify: true,
 	platform: 'node',
 	// sourcemap: 'inline',
-	target: node,
+	target: 'node20',
 	bundle: true,
 	format: 'esm',
 	tsconfig: 'tsconfig.json',

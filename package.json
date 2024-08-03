@@ -8,6 +8,8 @@
     "email": "tech@nbhr.io"
   },
   "scripts": {
+    "pretest": "pnpm -r build",
+    "test": "node --test",
     "changeset": "changeset",
     "prepublish": "pnpm -r prepublish",
     "prerelease": "changeset version",
