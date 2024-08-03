@@ -26,16 +26,10 @@
     "editor.tabSize": 2,
     "editor.autoIndent": "advanced"
   },
-  "eslint.validate": [
-    "javascript",
-    "typescript",
-  ],
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
     "source.addMissingImports": true,
   },
   "debug.console.closeOnEnd": false,
-
   "vscode-graphql.cacheSchemaFileForLookup": false,
   "xstate.nestTypegenFiles": false,
   "explorer.fileNesting.enabled": true,
