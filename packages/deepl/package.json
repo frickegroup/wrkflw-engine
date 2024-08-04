@@ -15,7 +15,7 @@
     "prepublish": "rimraf dist && rimraf tsconfig.tsbuildinfo && tsc"
   },
   "dependencies": {
-    "deepl-node": "1.7.1"
+    "deepl-node": "1.13.0"
   },
   "devDependencies": {
     "rimraf": "6.0.1"

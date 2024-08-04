@@ -15,8 +15,8 @@
     "prepublish": "rimraf dist && rimraf tsconfig.tsbuildinfo && tsc"
   },
   "dependencies": {
-    "@cloudamqp/amqp-client": "2.1.0",
-    "nanoid": "4.0.0"
+    "@cloudamqp/amqp-client": "3.1.1",
+    "nanoid": "5.0.7"
   },
   "devDependencies": {
     "rimraf": "6.0.1"

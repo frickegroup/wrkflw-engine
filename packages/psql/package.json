@@ -15,7 +15,7 @@
     "prepublish": "rimraf dist && rimraf tsconfig.tsbuildinfo && tsc"
   },
   "dependencies": {
-    "@databases/pg": "5.4.1"
+    "@databases/pg": "5.5.0"
   },
   "devDependencies": {
     "rimraf": "6.0.1"

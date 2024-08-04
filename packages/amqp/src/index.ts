@@ -21,10 +21,6 @@ export default class Node {
 
 	#publishers: Record<string, Writable> = {};
 
-	/**
-	 *
-	 * @param url connection url as string
-	 */
 	constructor(url: string) {
 		this.#client = new AMQPClient(url);
 	}
@@ -96,7 +92,6 @@ export default class Node {
 	async in<T extends Record<string, unknown>>(opts: {
 		queue: string;
 	}): Promise<BASE_MESSAGE<T>> {
-		// biome-ignore lint/suspicious/noImplicitAnyLet: <explanation>
 		let value;
 
 		const AMQP_CHANNEL = await this.#client.channel();
@@ -147,7 +142,7 @@ export default class Node {
 		const AMQP_CHANNEL = await this.#client.channel(opts.channel);
 		this.#publishers[opts.routing_key] = new Writable({
 			objectMode: true,
-			write: (chunk: PUBLISH_MESSAGE, encoding, callback) => {
+			write: (chunk: PUBLISH_MESSAGE, _, callback) => {
 				AMQP_CHANNEL.basicPublish('amq.direct', opts.routing_key, JSON.stringify(chunk.content), {
 					messageId: chunk.message_id,
 					timestamp: new Date(),
