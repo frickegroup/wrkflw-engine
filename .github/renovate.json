@@ -14,5 +14,5 @@
   "configMigration": true,
   "dependencyDashboardTitle": ":package: Dependency Dashboard by `renovate[bot]` :robot:",
   "additionalReviewers": [],
-  "platformCommit": true
+  "platformCommit": "enabled"
 }
