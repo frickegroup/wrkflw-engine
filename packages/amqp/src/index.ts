@@ -92,7 +92,8 @@ export default class Node {
 	async in<T extends Record<string, unknown>>(opts: {
 		queue: string;
 	}): Promise<BASE_MESSAGE<T>> {
-		let value;
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		let value: any;
 
 		const AMQP_CHANNEL = await this.#client.channel();
 		await AMQP_CHANNEL.basicQos(1, undefined, true);
