@@ -4,15 +4,14 @@
     "config:js-app",
     ":disableRateLimiting",
     ":updateNotScheduled",
-    "helpers:pinGitHubActionDigests"
+    "helpers:pinGitHubActionDigests",
+    "customManagers:biomeVersions"
   ],
   "timezone": "Europe/Berlin",
-  "schedule": [
-    "before 6am on Friday"
-  ],
+  "schedule": ["before 6am on Friday"],
   "rebaseWhen": "auto",
   "configMigration": true,
   "dependencyDashboardTitle": ":package: Dependency Dashboard by `renovate[bot]` :robot:",
   "additionalReviewers": [],
-  "platformCommit": true
+  "platformCommit": "enabled"
 }

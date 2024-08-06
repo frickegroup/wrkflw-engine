@@ -1,48 +1,34 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
-  "files.eol": "\n",
   "files.trimTrailingWhitespace": true,
   "npm.packageManager": "pnpm",
-  "editor.tabSize": 2,
-  "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features",
-    "editor.tabSize": 2,
-    "editor.insertSpaces": false,
-    "editor.autoIndent": "advanced",
-    "editor.inlayHints.enabled": "offUnlessPressed",
-  },
   "typescript.inlayHints.variableTypes.enabled": true,
   "typescript.inlayHints.parameterTypes.enabled": true,
   "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
   "typescript.inlayHints.parameterNames.enabled": "all",
   "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
-  "[yaml]": {
-    "editor.insertSpaces": true,
-    "editor.tabSize": 2,
-    "editor.autoIndent": "advanced"
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome",
+    "editor.inlayHints.enabled": "offUnlessPressed"
   },
   "[json]": {
-    "editor.insertSpaces": true,
-    "editor.tabSize": 2,
-    "editor.autoIndent": "advanced"
+    "editor.defaultFormatter": "biomejs.biome"
   },
-  "eslint.validate": [
-    "javascript",
-    "typescript",
-  ],
+  "[jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.addMissingImports": true,
+    "source.organizeImports.biome": "explicit",
+    "source.addMissingImports": "explicit"
   },
   "debug.console.closeOnEnd": false,
-
   "vscode-graphql.cacheSchemaFileForLookup": false,
   "xstate.nestTypegenFiles": false,
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {
     "*.ts": "${capture}.typegen.ts",
-    "package.json": "package-lock.json, yarn.lock, pnpm*, .eslint*, .node-version",
+    "package.json": "package-lock.json, yarn.lock, pnpm*, .node-version",
     "tsconfig.json": "tsconfig.*.json"
   }
 }

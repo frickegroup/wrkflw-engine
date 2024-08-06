@@ -3,7 +3,7 @@
   "compilerOptions": {
     "declaration": true,
     "emitDeclarationOnly": true,
-    "pretty": false,
+    "pretty": false
   },
   "exclude": ["build.ts"]
 }
