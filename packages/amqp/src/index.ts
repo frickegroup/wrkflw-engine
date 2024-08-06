@@ -164,6 +164,7 @@ export default class Node {
 			const message_id = data.message_id ?? nanoid();
 
 			const id = await new Promise<string>((resolve, reject) => {
+				// @ts-ignore
 				this.#publishers[opts.routing_key].write(
 					{
 						message_id: message_id,
@@ -184,6 +185,7 @@ export default class Node {
 			const message_id = m.message_id ?? nanoid();
 
 			const id = await new Promise<string>((resolve, reject) => {
+				// @ts-ignore
 				this.#publishers[opts.routing_key].write(
 					{
 						message_id: message_id,
