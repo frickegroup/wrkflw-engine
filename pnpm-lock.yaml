@@ -45,8 +45,8 @@ importers:
         specifier: 6.0.1
         version: 6.0.1(eslint@8.24.0)
       eslint-plugin-unicorn:
-        specifier: 44.0.1
-        version: 44.0.1(eslint@8.24.0)
+        specifier: 44.0.2
+        version: 44.0.2(eslint@8.24.0)
       tsm:
         specifier: 2.2.2
         version: 2.2.2
@@ -1014,8 +1014,8 @@ packages:
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
 
-  eslint-plugin-unicorn@44.0.1:
-    resolution: {integrity: sha512-ly6Ye9OfgYBCw/FfsdycCzAztcRd+pOA0F6xZwtUsUkgOBjtNR0684xC7u+0RmE3SKr3y7z8MaIWunw36tbZdg==}
+  eslint-plugin-unicorn@44.0.2:
+    resolution: {integrity: sha512-GLIDX1wmeEqpGaKcnMcqRvMVsoabeF0Ton0EX4Th5u6Kmf7RM9WBl705AXFEsns56ESkEs0uyelLuUTvz9Tr0w==}
     engines: {node: '>=14.18'}
     peerDependencies:
       eslint: '>=8.23.1'
@@ -3184,7 +3184,7 @@ snapshots:
     dependencies:
       eslint: 8.24.0
 
-  eslint-plugin-unicorn@44.0.1(eslint@8.24.0):
+  eslint-plugin-unicorn@44.0.2(eslint@8.24.0):
     dependencies:
       '@babel/helper-validator-identifier': 7.24.7
       ci-info: 3.9.0
