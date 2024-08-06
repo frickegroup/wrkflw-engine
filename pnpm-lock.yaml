@@ -27,8 +27,8 @@ importers:
         specifier: 2.2.2
         version: 2.2.2
       typescript:
-        specifier: 4.8.4
-        version: 4.8.4
+        specifier: 4.9.5
+        version: 4.9.5
 
   packages/amqp:
     dependencies:
@@ -65,7 +65,7 @@ importers:
     dependencies:
       '@databases/pg':
         specifier: 5.4.1
-        version: 5.4.1(typescript@4.8.4)
+        version: 5.4.1(typescript@4.9.5)
     devDependencies:
       esbuild:
         specifier: 0.15.10
@@ -1578,8 +1578,8 @@ packages:
     resolution: {integrity: sha512-/OxDN6OtAk5KBpGb28T+HZc2M+ADtvRxXrKKbUwtsLgdoxgX13hyy7ek6bFRl5+aBs2yZzB0c4CnQfAtVypW/g==}
     engines: {node: '>= 0.4'}
 
-  typescript@4.8.4:
-    resolution: {integrity: sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ==}
+  typescript@4.9.5:
+    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
     engines: {node: '>=4.2.0'}
     hasBin: true
 
@@ -1905,9 +1905,9 @@ snapshots:
     dependencies:
       '@databases/queue': 1.0.1
 
-  '@databases/pg-config@3.2.0(typescript@4.8.4)':
+  '@databases/pg-config@3.2.0(typescript@4.9.5)':
     dependencies:
-      cosmiconfig: 8.3.6(typescript@4.8.4)
+      cosmiconfig: 8.3.6(typescript@4.9.5)
       funtypes: 4.2.0
     transitivePeerDependencies:
       - typescript
@@ -1918,11 +1918,11 @@ snapshots:
 
   '@databases/pg-errors@1.0.0': {}
 
-  '@databases/pg@5.4.1(typescript@4.8.4)':
+  '@databases/pg@5.4.1(typescript@4.9.5)':
     dependencies:
       '@babel/code-frame': 7.24.7
       '@databases/escape-identifier': 1.0.3
-      '@databases/pg-config': 3.2.0(typescript@4.8.4)
+      '@databases/pg-config': 3.2.0(typescript@4.9.5)
       '@databases/pg-connection-string': 1.0.0
       '@databases/pg-data-type-id': 3.0.0
       '@databases/pg-errors': 1.0.0
@@ -2150,14 +2150,14 @@ snapshots:
     dependencies:
       delayed-stream: 1.0.0
 
-  cosmiconfig@8.3.6(typescript@4.8.4):
+  cosmiconfig@8.3.6(typescript@4.9.5):
     dependencies:
       import-fresh: 3.3.0
       js-yaml: 4.1.0
       parse-json: 5.2.0
       path-type: 4.0.0
     optionalDependencies:
-      typescript: 4.8.4
+      typescript: 4.9.5
 
   cross-spawn@5.1.0:
     dependencies:
@@ -3253,7 +3253,7 @@ snapshots:
       is-typed-array: 1.1.13
       possible-typed-array-names: 1.0.0
 
-  typescript@4.8.4: {}
+  typescript@4.9.5: {}
 
   unbox-primitive@1.0.2:
     dependencies:
