@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "esbuild": "0.15.10",
-    "tsm": "2.2.2"
+    "tsm": "2.3.0"
   },
   "peerDependencies": {},
   "access": "public"
