@@ -18,7 +18,6 @@ interface PUBLISH_MESSAGE {
 
 export default class Node {
 	#client: AMQPClient;
-
 	#publishers: Record<string, Writable> = {};
 
 	constructor(url: string) {
@@ -92,8 +91,7 @@ export default class Node {
 	async in<T extends Record<string, unknown>>(opts: {
 		queue: string;
 	}): Promise<BASE_MESSAGE<T>> {
-		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-		let value: any;
+		let value;
 
 		const AMQP_CHANNEL = await this.#client.channel();
 		await AMQP_CHANNEL.basicQos(1, undefined, true);
@@ -164,7 +162,6 @@ export default class Node {
 			const message_id = data.message_id ?? nanoid();
 
 			const id = await new Promise<string>((resolve, reject) => {
-				// @ts-ignore
 				this.#publishers[opts.routing_key].write(
 					{
 						message_id: message_id,
@@ -185,7 +182,6 @@ export default class Node {
 			const message_id = m.message_id ?? nanoid();
 
 			const id = await new Promise<string>((resolve, reject) => {
-				// @ts-ignore
 				this.#publishers[opts.routing_key].write(
 					{
 						message_id: message_id,

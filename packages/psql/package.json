@@ -12,14 +12,10 @@
   },
   "files": ["dist"],
   "scripts": {
-    "prepublish": "rimraf dist && rimraf tsconfig.tsbuildinfo && tsc"
+    "prepublish": "tsc --build --verbose"
   },
   "dependencies": {
     "@databases/pg": "5.5.0"
   },
-  "devDependencies": {
-    "rimraf": "6.0.1"
-  },
-  "peerDependencies": {},
   "access": "public"
 }
