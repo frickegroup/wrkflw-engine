@@ -1,6 +1,6 @@
 import type { ConnectionPool, SQLQuery } from '@databases/pg';
 
-import createConnectionPool from '@databases/pg';
+import { default as createConnectionPool } from '@databases/pg';
 
 export default class Node {
 	#db: ConnectionPool;
