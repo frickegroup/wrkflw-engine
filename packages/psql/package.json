@@ -12,17 +12,10 @@
   },
   "files": ["dist"],
   "scripts": {
-    "build": "tsm build.ts",
-    "dts": "tsc  --project tsconfig.dts.json",
-    "prepublish": "pnpm build && pnpm dts"
+    "prepublish": "tsc --build --verbose"
   },
   "dependencies": {
-    "@databases/pg": "5.4.1"
+    "@databases/pg": "5.5.0"
   },
-  "devDependencies": {
-    "esbuild": "0.15.10",
-    "tsm": "2.2.2"
-  },
-  "peerDependencies": {},
   "access": "public"
 }
