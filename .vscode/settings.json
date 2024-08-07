@@ -15,7 +15,5 @@
     "source.organizeImports.biome": "explicit",
     "source.addMissingImports": "explicit"
   },
-  "debug.console.closeOnEnd": false,
-  "vscode-graphql.cacheSchemaFileForLookup": false,
-  "xstate.nestTypegenFiles": false
+  "debug.console.closeOnEnd": false
 }
