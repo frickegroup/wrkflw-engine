@@ -23,12 +23,5 @@
   },
   "debug.console.closeOnEnd": false,
   "vscode-graphql.cacheSchemaFileForLookup": false,
-  "xstate.nestTypegenFiles": false,
-  "explorer.fileNesting.enabled": true,
-  "explorer.fileNesting.expand": false,
-  "explorer.fileNesting.patterns": {
-    "*.ts": "${capture}.typegen.ts",
-    "package.json": "package-lock.json, yarn.lock, pnpm*, .node-version",
-    "tsconfig.json": "tsconfig.*.json"
-  }
+  "xstate.nestTypegenFiles": false
 }
