@@ -6,7 +6,8 @@ export default class Node {
 	#db: ConnectionPool;
 
 	constructor(url: string, poolSize = 2) {
-		this.#db = createConnectionPool.default({
+		// @ts-expect-error
+		this.#db = createConnectionPool({
 			connectionString: url,
 			poolSize: poolSize,
 			bigIntMode: 'number',

@@ -91,7 +91,7 @@ export default class Node {
 	async in<T extends Record<string, unknown>>(opts: {
 		queue: string;
 	}): Promise<BASE_MESSAGE<T>> {
-		let value;
+		let value: BASE_MESSAGE<T> | undefined;
 
 		const AMQP_CHANNEL = await this.#client.channel();
 		await AMQP_CHANNEL.basicQos(1, undefined, true);
@@ -116,7 +116,7 @@ export default class Node {
 				value = {
 					delivery_tag,
 					message_id,
-					message_content,
+					message_body: message_content,
 					message_timestamp,
 				};
 
@@ -157,12 +157,15 @@ export default class Node {
 	async out(opts: { routing_key: string }, message: PUBLISH_MESSAGE): Promise<string>;
 	async out(opts: { routing_key: string }, messages: PUBLISH_MESSAGE[]): Promise<string[]>;
 	async out(opts: { routing_key: string }, tData: unknown): Promise<unknown> {
+		const publisher = this.#publishers[opts.routing_key];
+		if (!publisher) throw new Error('Publisher not found');
+
 		if (!Array.isArray(tData)) {
 			const data = tData as PUBLISH_MESSAGE;
 			const message_id = data.message_id ?? nanoid();
 
 			const id = await new Promise<string>((resolve, reject) => {
-				this.#publishers[opts.routing_key].write(
+				publisher.write(
 					{
 						message_id: message_id,
 						content: data.content,
@@ -182,7 +185,7 @@ export default class Node {
 			const message_id = m.message_id ?? nanoid();
 
 			const id = await new Promise<string>((resolve, reject) => {
-				this.#publishers[opts.routing_key].write(
+				publisher.write(
 					{
 						message_id: message_id,
 						content: m.content,
