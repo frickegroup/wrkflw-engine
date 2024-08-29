@@ -1,5 +1,6 @@
-import { Translator } from 'deepl-node';
 import type { SourceLanguageCode, TargetLanguageCode } from 'deepl-node';
+
+import { Translator } from 'deepl-node';
 
 export default class Node {
 	#client: Translator;
@@ -14,7 +15,10 @@ export default class Node {
 			source_language: SourceLanguageCode;
 			target_language: TargetLanguageCode;
 		},
-	) {
+	): Promise<{
+		character_usage: number | undefined;
+		translation: string;
+	}> {
 		if (text === '')
 			return {
 				character_usage: 0,
@@ -33,12 +37,11 @@ export default class Node {
 		);
 		const endUsage = await this.#client.getUsage();
 
-		let characterUsage: number | undefined;
-		if (endUsage.character && startUsage.character)
-			characterUsage = endUsage.character.count - startUsage.character.count;
-
 		return {
-			character_usage: characterUsage,
+			character_usage:
+				endUsage.character &&
+				startUsage.character &&
+				endUsage.character.count - startUsage.character.count,
 			translation: result.text,
 		};
 	}

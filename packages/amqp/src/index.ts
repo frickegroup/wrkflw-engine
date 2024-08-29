@@ -18,29 +18,24 @@ interface PUBLISH_MESSAGE {
 
 export default class Node {
 	#client: AMQPClient;
-
 	#publishers: Record<string, Writable> = {};
 
-	/**
-	 *
-	 * @param url connection url as string
-	 */
 	constructor(url: string) {
 		this.#client = new AMQPClient(url);
 	}
 
-	async connect() {
+	async connect(): Promise<void> {
 		await this.#client.connect();
 	}
 
-	async close() {
+	async close(): Promise<void> {
 		await this.#client.close();
 	}
 
 	async ack(opts: {
 		channel: number;
 		delivery_tag: number;
-	}) {
+	}): Promise<void> {
 		const AMQP_CHANNEL = await this.#client.channel(opts.channel);
 		await AMQP_CHANNEL.basicAck(opts.delivery_tag, false);
 	}
@@ -48,7 +43,7 @@ export default class Node {
 	async reject(opts: {
 		channel: number;
 		delivery_tag: number;
-	}) {
+	}): Promise<void> {
 		const AMQP_CHANNEL = await this.#client.channel(opts.channel);
 		await AMQP_CHANNEL.basicNack(opts.delivery_tag, true, false);
 	}
@@ -60,7 +55,7 @@ export default class Node {
 			parallel: number;
 		},
 		callback: (msg: BASE_MESSAGE<T>) => Promise<void> | void,
-	) {
+	): Promise<void> {
 		const AMQP_CHANNEL = await this.#client.channel(opts.channel);
 		await AMQP_CHANNEL.basicQos(opts.parallel, undefined, true);
 
@@ -96,8 +91,7 @@ export default class Node {
 	async in<T extends Record<string, unknown>>(opts: {
 		queue: string;
 	}): Promise<BASE_MESSAGE<T>> {
-		// biome-ignore lint/suspicious/noImplicitAnyLet: <explanation>
-		let value;
+		let value: BASE_MESSAGE<T> | undefined;
 
 		const AMQP_CHANNEL = await this.#client.channel();
 		await AMQP_CHANNEL.basicQos(1, undefined, true);
@@ -122,7 +116,7 @@ export default class Node {
 				value = {
 					delivery_tag,
 					message_id,
-					message_content,
+					message_body: message_content,
 					message_timestamp,
 				};
 
@@ -143,11 +137,11 @@ export default class Node {
 	async addPublisher(opts: {
 		routing_key: string;
 		channel?: number;
-	}) {
+	}): Promise<void> {
 		const AMQP_CHANNEL = await this.#client.channel(opts.channel);
 		this.#publishers[opts.routing_key] = new Writable({
 			objectMode: true,
-			write: (chunk: PUBLISH_MESSAGE, encoding, callback) => {
+			write: (chunk: PUBLISH_MESSAGE, _, callback) => {
 				AMQP_CHANNEL.basicPublish('amq.direct', opts.routing_key, JSON.stringify(chunk.content), {
 					messageId: chunk.message_id,
 					timestamp: new Date(),
@@ -163,12 +157,15 @@ export default class Node {
 	async out(opts: { routing_key: string }, message: PUBLISH_MESSAGE): Promise<string>;
 	async out(opts: { routing_key: string }, messages: PUBLISH_MESSAGE[]): Promise<string[]>;
 	async out(opts: { routing_key: string }, tData: unknown): Promise<unknown> {
+		const publisher = this.#publishers[opts.routing_key];
+		if (!publisher) throw new Error('Publisher not found');
+
 		if (!Array.isArray(tData)) {
 			const data = tData as PUBLISH_MESSAGE;
 			const message_id = data.message_id ?? nanoid();
 
 			const id = await new Promise<string>((resolve, reject) => {
-				this.#publishers[opts.routing_key].write(
+				publisher.write(
 					{
 						message_id: message_id,
 						content: data.content,
@@ -188,7 +185,7 @@ export default class Node {
 			const message_id = m.message_id ?? nanoid();
 
 			const id = await new Promise<string>((resolve, reject) => {
-				this.#publishers[opts.routing_key].write(
+				publisher.write(
 					{
 						message_id: message_id,
 						content: m.content,

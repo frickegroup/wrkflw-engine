@@ -12,17 +12,10 @@
   },
   "files": ["dist"],
   "scripts": {
-    "build": "tsm build.ts",
-    "dts": "tsc  --project tsconfig.dts.json",
-    "prepublish": "pnpm build && pnpm dts"
+    "prepublish": "tsc --build --verbose"
   },
   "dependencies": {
-    "deepl-node": "1.7.1"
+    "deepl-node": "1.13.0"
   },
-  "devDependencies": {
-    "esbuild": "0.15.10",
-    "tsm": "2.2.2"
-  },
-  "peerDependencies": {},
   "access": "public"
 }

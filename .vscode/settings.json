@@ -2,14 +2,8 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "files.trimTrailingWhitespace": true,
   "npm.packageManager": "pnpm",
-  "typescript.inlayHints.variableTypes.enabled": true,
-  "typescript.inlayHints.parameterTypes.enabled": true,
-  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
-  "typescript.inlayHints.parameterNames.enabled": "all",
-  "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
   "[typescript]": {
-    "editor.defaultFormatter": "biomejs.biome",
-    "editor.inlayHints.enabled": "offUnlessPressed"
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[json]": {
     "editor.defaultFormatter": "biomejs.biome"
@@ -21,14 +15,5 @@
     "source.organizeImports.biome": "explicit",
     "source.addMissingImports": "explicit"
   },
-  "debug.console.closeOnEnd": false,
-  "vscode-graphql.cacheSchemaFileForLookup": false,
-  "xstate.nestTypegenFiles": false,
-  "explorer.fileNesting.enabled": true,
-  "explorer.fileNesting.expand": false,
-  "explorer.fileNesting.patterns": {
-    "*.ts": "${capture}.typegen.ts",
-    "package.json": "package-lock.json, yarn.lock, pnpm*, .node-version",
-    "tsconfig.json": "tsconfig.*.json"
-  }
+  "debug.console.closeOnEnd": false
 }
