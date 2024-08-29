@@ -15,7 +15,7 @@
     "prepublish": "tsc --build --verbose"
   },
   "dependencies": {
-    "deepl-node": "1.13.0"
+    "deepl-node": "1.13.1"
   },
   "access": "public"
 }
