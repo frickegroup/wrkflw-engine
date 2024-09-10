@@ -1,5 +1,18 @@
 # @frickegroup/wrkflw-psql
 
+## 1.0.0
+
+### Major Changes
+
+- [#117](https://github.com/frickegroup/wrkflw-engine/pull/117) [`7a74702`](https://github.com/frickegroup/wrkflw-engine/commit/7a747027026813dc3f6ecb15ca6dc57b21959fb8) Thanks [@alexanderniebuhr](https://github.com/alexanderniebuhr)! - Adds support for custom ssl options.
+
+  ⚠️ BREAKING: The parameter `poolSize` is mandotary now.
+
+### Patch Changes
+
+- [#110](https://github.com/frickegroup/wrkflw-engine/pull/110) [`44d30c0`](https://github.com/frickegroup/wrkflw-engine/commit/44d30c077c066100f07419b524d8ec655e29894b) Thanks [@alexanderniebuhr](https://github.com/alexanderniebuhr)! - dependencies updates:
+  - Updated dependency [`@databases/pg@5.5.0` ↗︎](https://www.npmjs.com/package/@databases/pg/v/5.5.0) (from `5.4.1`, in `dependencies`)
+
 ## 0.1.3
 
 ### Patch Changes

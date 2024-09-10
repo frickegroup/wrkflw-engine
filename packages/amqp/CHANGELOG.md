@@ -1,5 +1,13 @@
 # @frickegroup/wrkflw-amqp
 
+## 0.1.14
+
+### Patch Changes
+
+- [#110](https://github.com/frickegroup/wrkflw-engine/pull/110) [`44d30c0`](https://github.com/frickegroup/wrkflw-engine/commit/44d30c077c066100f07419b524d8ec655e29894b) Thanks [@alexanderniebuhr](https://github.com/alexanderniebuhr)! - dependencies updates:
+  - Updated dependency [`@cloudamqp/amqp-client@3.1.1` ↗︎](https://www.npmjs.com/package/@cloudamqp/amqp-client/v/3.1.1) (from `2.1.0`, in `dependencies`)
+  - Updated dependency [`nanoid@5.0.7` ↗︎](https://www.npmjs.com/package/nanoid/v/5.0.7) (from `4.0.0`, in `dependencies`)
+
 ## 0.1.13
 
 ### Patch Changes

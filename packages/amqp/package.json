@@ -1,6 +1,6 @@
 {
   "name": "@frickegroup/wrkflw-amqp",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "license": "Apache-2.0",
   "sideEffects": false,
   "type": "module",
@@ -10,7 +10,9 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "prepublish": "tsc --build --verbose"
   },
