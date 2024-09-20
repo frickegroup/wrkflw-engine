@@ -36,8 +36,8 @@ importers:
   packages/deepl:
     dependencies:
       deepl-node:
-        specifier: 1.13.1
-        version: 1.13.1
+        specifier: 1.14.0
+        version: 1.14.0
 
   packages/psql:
     dependencies:
@@ -246,9 +246,6 @@ packages:
   '@types/node@12.20.55':
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
 
-  '@types/node@20.16.2':
-    resolution: {integrity: sha512-91s/n4qUPV/wg8eE9KHYW1kouTfDk2FPGjXbBMfRWP/2vg1rCXNQL1OCabwGs0XSdukuK+MwCDXE30QpSeMUhQ==}
-
   '@types/node@20.16.5':
     resolution: {integrity: sha512-VwYCweNo3ERajwy0IUlqqcyZ8/A7Zwa9ZP3MnENWcB11AejO+tLy3pu850goUW2FC/IJMdZUfKpX/yxL1gymCA==}
 
@@ -334,8 +331,8 @@ packages:
   dataloader@1.4.0:
     resolution: {integrity: sha512-68s5jYdlvasItOJnCuI2Q9s4q98g0pCyL3HrcKJu8KNugUl8ahgmZYg38ysLTgQjjXX3H8CJLkAvWrclWfcalw==}
 
-  deepl-node@1.13.1:
-    resolution: {integrity: sha512-J1Y4+FYNxxTyqKiTM83Vub8Fm6/z6ZlV7yFKJ59Oi5dWXjdILQWd8UR4eiNF+pJtTBH5ObRv1cdUrRyUuN5VDg==}
+  deepl-node@1.14.0:
+    resolution: {integrity: sha512-+AaQCVyaBEBAaFjq7f3dMY3i9i2NaImayBcBEckzCS6LO+rA35JDe0UjCkrcKk+MEbJ+9+jctMTkDgCVWOmlcQ==}
     engines: {node: '>=12.0'}
 
   delayed-stream@1.0.0:
@@ -1100,10 +1097,6 @@ snapshots:
 
   '@types/node@12.20.55': {}
 
-  '@types/node@20.16.2':
-    dependencies:
-      undici-types: 6.19.8
-
   '@types/node@20.16.5':
     dependencies:
       undici-types: 6.19.8
@@ -1185,9 +1178,9 @@ snapshots:
 
   dataloader@1.4.0: {}
 
-  deepl-node@1.13.1:
+  deepl-node@1.14.0:
     dependencies:
-      '@types/node': 20.16.2
+      '@types/node': 20.16.5
       axios: 1.7.5
       form-data: 3.0.1
       loglevel: 1.9.1
