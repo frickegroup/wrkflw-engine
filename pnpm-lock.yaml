@@ -21,8 +21,8 @@ importers:
         specifier: 20.16.5
         version: 20.16.5
       typescript:
-        specifier: 5.6.2
-        version: 5.6.2
+        specifier: 5.6.3
+        version: 5.6.3
 
   packages/amqp:
     dependencies:
@@ -43,7 +43,7 @@ importers:
     dependencies:
       '@databases/pg':
         specifier: 5.5.0
-        version: 5.5.0(typescript@5.6.2)
+        version: 5.5.0(typescript@5.6.3)
 
 packages:
 
@@ -758,8 +758,8 @@ packages:
   tr46@0.0.3:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
 
-  typescript@5.6.2:
-    resolution: {integrity: sha512-NW8ByodCSNCwZeghjN3o+JX5OFH0Ojg6sadjEKY4huZ52TqbJTJnDo5+Tw98lSy63NZvi4n+ez5m2u5d4PkZyw==}
+  typescript@5.6.3:
+    resolution: {integrity: sha512-hjcS1mhfuyi4WW8IWtjP7brDrG2cuDZukyrYrSauoXGNgx0S7zceP07adYkJycEr56BOUTNPzbInooiN3fn1qw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -1016,9 +1016,9 @@ snapshots:
     dependencies:
       '@databases/queue': 1.0.1
 
-  '@databases/pg-config@3.2.0(typescript@5.6.2)':
+  '@databases/pg-config@3.2.0(typescript@5.6.3)':
     dependencies:
-      cosmiconfig: 8.3.6(typescript@5.6.2)
+      cosmiconfig: 8.3.6(typescript@5.6.3)
       funtypes: 4.2.0
     transitivePeerDependencies:
       - typescript
@@ -1029,11 +1029,11 @@ snapshots:
 
   '@databases/pg-errors@1.0.0': {}
 
-  '@databases/pg@5.5.0(typescript@5.6.2)':
+  '@databases/pg@5.5.0(typescript@5.6.3)':
     dependencies:
       '@babel/code-frame': 7.24.7
       '@databases/escape-identifier': 1.0.3
-      '@databases/pg-config': 3.2.0(typescript@5.6.2)
+      '@databases/pg-config': 3.2.0(typescript@5.6.3)
       '@databases/pg-connection-string': 1.0.0
       '@databases/pg-data-type-id': 3.0.0
       '@databases/pg-errors': 1.0.0
@@ -1168,14 +1168,14 @@ snapshots:
     dependencies:
       delayed-stream: 1.0.0
 
-  cosmiconfig@8.3.6(typescript@5.6.2):
+  cosmiconfig@8.3.6(typescript@5.6.3):
     dependencies:
       import-fresh: 3.3.0
       js-yaml: 4.1.0
       parse-json: 5.2.0
       path-type: 4.0.0
     optionalDependencies:
-      typescript: 5.6.2
+      typescript: 5.6.3
 
   cross-spawn@5.1.0:
     dependencies:
@@ -1543,7 +1543,7 @@ snapshots:
 
   tr46@0.0.3: {}
 
-  typescript@5.6.2: {}
+  typescript@5.6.3: {}
 
   undici-types@6.19.8: {}
 
